@@ -5,20 +5,21 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Button
 import android.widget.Switch
+import com.gl4.tp3.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), ActionMode.Callback {
-    val binding : Switch by lazy { findViewById(R.id.switch1) }
-    val button : Button by lazy { findViewById(R.id.button) }
+    private  lateinit var binding : ActivityMainBinding
     private  lateinit var actionMode: ActionMode
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment,FragmentClock(),null)
             .addToBackStack(null)
             .commit()
-        button.setOnLongClickListener{
+        binding.button.setOnLongClickListener{
             actionMode = this@MainActivity.startActionMode(this@MainActivity)!!
             return@setOnLongClickListener true
         }
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity(), ActionMode.Callback {
         var transaction = fragmentManager.beginTransaction()
         var fragmentClock = FragmentClock()
         var bundle = Bundle()
-        bundle.putBoolean("digitalOK",binding.isChecked)
+        bundle.putBoolean("digitalOK",binding.switch1.isChecked)
         fragmentClock.arguments = bundle
         transaction.replace(R.id.fragment,fragmentClock)
         transaction.commit()
@@ -46,7 +47,7 @@ class MainActivity : AppCompatActivity(), ActionMode.Callback {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.action_switch)
         {
-            binding.isChecked = !binding.isChecked
+            binding.switch1.isChecked = !binding.switch1.isChecked
             setTime(null)
         }
         return super.onOptionsItemSelected(item)
@@ -66,7 +67,7 @@ class MainActivity : AppCompatActivity(), ActionMode.Callback {
     override fun onActionItemClicked(actionMode: ActionMode?, menuItem: MenuItem?): Boolean {
         return when (menuItem?.itemId) {
             R.id.action_color -> {
-                button.setBackgroundColor(
+                binding.button.setBackgroundColor(
                     resources.getColor(
                         R.color.purple_200
                     )
