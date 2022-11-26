@@ -9,10 +9,10 @@ This is a simple application where you can visualize either digital clock or ana
      <td colspan="2">Changing the button color </td>
   </tr>
   <tr>
-    <td><img src="./ScreenShot1.jpg" width=200 height=480></td>
-    <td><img src="./ScreenShot2.jpg" width=200 height=480></td>
-    <td><img src="./ScreenShot3.jpg" width=200 height=480></td>
-    <td><img src="./ScreenShot4.jpg" width=200 height=480></td>
+    <td><img src="./ScreenShot1.jpg" width=200 height=400></td>
+    <td><img src="./ScreenShot2.jpg" width=200 height=400></td>
+    <td><img src="./ScreenShot3.jpg" width=200 height=400></td>
+    <td><img src="./ScreenShot4.jpg" width=200 height=400></td>
   </tr>
  </table>
  
